@@ -2,17 +2,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const progressRoutes = require('./routes/progress');
+const dotenv = require('dotenv');
 const moodRoutes = require('./routes/mood');
 require('dotenv').config();
+
+// Load environment variables from .env file
+dotenv.config();
 
 const app = express();
 app.use(express.json());
 
-// MongoDB Connection
+// Connect to MongoDB Atlas using Mongoose
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+})
+.then(() => console.log('MongoDB connected...'))
+.catch(err => console.error('MongoDB connection error:', err));
 
 // Use Routes
 app.use('/api/progress', progressRoutes);
