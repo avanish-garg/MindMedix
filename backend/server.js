@@ -1,6 +1,6 @@
 // backend/server.js
 
-// require('dotenv').config(); // Commented out to avoid loading environment variables
+require('dotenv').config(); // This loads the environment variables
 const express = require('express');
 const mongoose = require('mongoose');
 
@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 
 // MongoDB connection string, hardcoded
-const mongoURI = 'mongodb+srv://avanish:jaijinendra@pandavastrial.n7bpfrh.mongodb.net/?retryWrites=true&w=majority&appName=PANDAVASTRIAL';
+const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://avanish:jaijinendra@pandavastrial.n7bpfrh.mongodb.net/?retryWrites=true&w=majority&appName=PANDAVASTRIAL';
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
@@ -27,5 +27,5 @@ app.use('/api/progress', progressRoutes);
 app.use('/api/mood', moodRoutes);
 
 // Set the server to listen on the specified port
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
