@@ -14,12 +14,20 @@ const moodSchema = new mongoose.Schema({
   description: String,
 });
 
+const diseasePredictionSchema = new mongoose.Schema({
+  age: Number,
+  symptoms: [Number],
+  diagnosis: String,
+  date: { type: Date, default: Date.now },
+});
+
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   moodLogs: [moodSchema],
   progress: [progressSchema],
+  diseasePredictions: [diseasePredictionSchema], // Added disease predictions
 });
 
 const User = mongoose.model('User', userSchema);
