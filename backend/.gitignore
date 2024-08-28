@@ -7,11 +7,7 @@
 # TensorFlow files
 node_modules/@tensorflow/tfjs-node/deps/lib/tensorflow.dll
 
-# Logs
-logs
-*.log
-npm-debug.log*
-
-# Ignore any generated directories or files
-dist/
-build/
+# Ignore TensorFlow DLL and other large binary files
+node_modules/@tensorflow/tfjs-node
+C:/tensorflow-deps/tfjs-node
+C:/tensorflow-deps/

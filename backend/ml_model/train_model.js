@@ -1,6 +1,4 @@
-// ml_model/train_model.js
-
-const tf = require('@tensorflow/tfjs-node'); // Using TensorFlow.js for Node.js
+const tf = require('C:/tensorflow-deps/tfjs-node'); // Updated to reference the local TensorFlow folder
 const fs = require('fs');
 const path = require('path');
 
@@ -39,7 +37,7 @@ model.fit(xs, ys, {
     }
 }).then(async () => {
     // Step 4: Save the Model
-    const savePath = path.join(__dirname, 'saved_model');
+    const savePath = path.join('C:/tensorflow-deps/ml_model/saved_model'); // Updated path to reflect local TensorFlow setup
     await model.save(`file://${savePath}`);
     console.log('Model saved at:', savePath);
 });
