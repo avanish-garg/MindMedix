@@ -4,12 +4,16 @@ const express = require('express');
 const router = express.Router();
 const tf = require('@tensorflow/tfjs-node');
 const path = require('path');
+const fs = require('fs');
 const User = require('../models/User'); // Import User model
 const authenticateToken = require('../middleware/authenticateToken'); // Ensure only authenticated users can access
 
-// Step 1: Load the trained model
+// Step 1: Load the trained model and disease classes
 let model;
 const modelPath = path.join(__dirname, '../ml_model/saved_model/model.json');
+const diseaseClassesPath = path.join(__dirname, '../ml_model/disease_classes.json');
+const diseaseClasses = JSON.parse(fs.readFileSync(diseaseClassesPath, 'utf8'));
+
 tf.loadLayersModel(`file://${modelPath}`)
     .then(loadedModel => {
         model = loadedModel;
@@ -25,29 +29,32 @@ router.post('/', authenticateToken, async (req, res) => {
         if (!model) return res.status(500).json({ message: 'Model not loaded' });
 
         // Prepare the input for prediction
-        const input = tf.tensor2d([[age, symptoms[0], symptoms[1]]]);
+        const input = tf.tensor2d([[age, symptoms[0], symptoms[1], symptoms[2]]]); // Adjusted for three symptoms
 
         // Make a prediction
         const prediction = model.predict(input);
-        const result = prediction.arraySync()[0][0];
+        const predictionArray = prediction.arraySync()[0];
 
-        const diagnosis = result > 0.5 ? 'Positive' : 'Negative';
+        // Map prediction to diseases and get top 10
+        const topDiseases = predictionArray
+            .map((probability, index) => ({ disease: diseaseClasses[index], probability }))
+            .sort((a, b) => b.probability - a.probability)
+            .slice(0, 10); // Top 10 diseases
 
-        // Find the user and update their record with the prediction
+        // Find the user and update their record with the top prediction
         const user = await User.findById(req.user.id);
         if (!user) return res.status(404).json({ message: 'User not found' });
 
-        // Save the prediction to the user's record
         user.diseasePredictions.push({
             age,
             symptoms,
-            diagnosis,
+            diagnosis: topDiseases[0].disease, // Main prediction
             date: new Date(),
         });
-        
+
         await user.save();
 
-        res.status(200).json({ prediction: diagnosis });
+        res.status(200).json({ topDiseases });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
