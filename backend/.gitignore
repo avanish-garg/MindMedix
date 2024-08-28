@@ -1,0 +1,3 @@
+# Ignore TensorFlow DLL and other large binary files
+node_modules/@tensorflow/
+node_modules/@tensorflow/tfjs-node/deps/lib/tensorflow.dll
