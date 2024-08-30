@@ -1,60 +1,72 @@
-// backend/ml_model/train_model.js
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.model_selection import train_test_split, RandomizedSearchCV, cross_val_score
+from imblearn.over_sampling import SMOTE
 
-const tf = require('@tensorflow/tfjs-node'); // Using TensorFlow.js for Node.js
-const fs = require('fs');
-const path = require('path');
+# Load the dataset
+data = pd.read_csv('preprocessed_health_data.csv')
 
-// Step 1: Load and parse CSV data
-const csvFilePath = path.join(__dirname, 'health_data.csv'); // Updated file path
-const csvData = fs.readFileSync(csvFilePath, 'utf8');
-const lines = csvData.split('\n');
-const headers = lines[0].split(',');
+# Display basic information
+print("Dataset Info:")
+print(data.info())
 
-// Parse the CSV data into an array of objects
-const data = lines.slice(1).map(line => {
-    const values = line.split(',');
-    return headers.reduce((obj, header, i) => {
-        obj[header] = parseFloat(values[i]) || values[i]; // Convert to numbers or leave as strings
-        return obj;
-    }, {});
-});
+# Check for missing values
+print("Missing Values in Each Column:")
+print(data.isnull().sum())
 
-// Step 2: Prepare training data
-const trainX = data.map(d => [d.age, d.symptom1, d.symptom2, d.symptom3]); // Include relevant symptoms
-const trainY = data.map(d => d.disease); // Target variable
+# Check target variable distribution
+print("Target Variable Distribution:")
+print(data['disease'].value_counts())
 
-// Encode the target variable (disease) into integers
-const diseaseClasses = Array.from(new Set(trainY)); // Unique classes (diseases)
-const diseaseToIndex = diseaseClasses.reduce((obj, disease, i) => {
-    obj[disease] = i;
-    return obj;
-}, {});
+# Select features and target variable
+X = data.drop('disease', axis=1)
+y = data['disease']
 
-const trainYEncoded = trainY.map(disease => diseaseToIndex[disease]);
+# Scale the features
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
 
-// Convert to TensorFlow.js tensors
-const xs = tf.tensor2d(trainX);
-const ys = tf.oneHot(tf.tensor1d(trainYEncoded, 'int32'), diseaseClasses.length); // One-hot encode target
+# Define and train the RandomForest model
+rf_model = RandomForestClassifier(random_state=42)
+rf_model.fit(X_scaled, y)
 
-// Step 3: Define and Train the Model
-const model = tf.sequential();
-model.add(tf.layers.dense({ units: 128, inputShape: [trainX[0].length], activation: 'relu' }));
-model.add(tf.layers.dense({ units: 64, activation: 'relu' }));
-model.add(tf.layers.dense({ units: diseaseClasses.length, activation: 'softmax' })); // Multi-class output layer
-model.compile({ optimizer: 'adam', loss: 'categoricalCrossentropy', metrics: ['accuracy'] });
+# Hyperparameter Tuning
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [None, 10, 20, 30],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
+random_search = RandomizedSearchCV(estimator=rf_model, param_distributions=param_grid,
+                                   n_iter=10, cv=3, verbose=2, random_state=42, n_jobs=-1)
+random_search.fit(X_scaled, y)
+best_params = random_search.best_params_
+print("Best parameters found: {}".format(best_params))
+best_rf_model = random_search.best_estimator_
 
-model.fit(xs, ys, {
-    epochs: 100,
-    callbacks: {
-        onEpochEnd: (epoch, logs) => console.log(`Epoch ${epoch}: loss = ${logs.loss}, accuracy = ${logs.acc}`)
-    }
-}).then(async () => {
-    // Step 4: Save the Model and Disease Classes
-    const savePath = path.join(__dirname, 'saved_model');
-    await model.save(`file://${savePath}`);
-    console.log('Model saved at:', savePath);
+# Feature Importance
+importances = best_rf_model.feature_importances_
+feature_names = X.columns
+feature_importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
+important_features = feature_importance_df.sort_values(by='Importance', ascending=False)
+print("Feature Importance:")
+print(important_features.head(20))
 
-    // Save the disease classes for later use in prediction
-    fs.writeFileSync(path.join(__dirname, 'disease_classes.json'), JSON.stringify(diseaseClasses));
-    console.log('Disease classes saved.');
-});
+# Handle Class Imbalance with SMOTE
+smote = SMOTE()
+X_resampled, y_resampled = smote.fit_resample(X_scaled, y)
+best_rf_model.fit(X_resampled, y_resampled)
+
+# Cross-Validation
+cv_scores_resampled = cross_val_score(best_rf_model, X_resampled, y_resampled, cv=5, scoring='accuracy')
+print("Cross-Validation Accuracy Scores on Resampled Data: {}".format(cv_scores_resampled))
+print("Mean Accuracy on Resampled Data: {}".format(cv_scores_resampled.mean()))
+
+# Final Evaluation
+y_pred = best_rf_model.predict(X_scaled)
+print("Confusion Matrix:")
+print(confusion_matrix(y, y_pred))
+print("Classification Report:")
+print(classification_report(y, y_pred))

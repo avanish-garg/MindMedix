@@ -1,62 +1,80 @@
-// backend/routes/predict.js
-
+// predict.js
 const express = require('express');
 const router = express.Router();
-const tf = require('@tensorflow/tfjs-node');
+const { PythonShell } = require('python-shell');
 const path = require('path');
-const fs = require('fs');
-const User = require('../models/User'); // Import User model
-const authenticateToken = require('../middleware/authenticateToken'); // Ensure only authenticated users can access
+const User = require('../models/User');
+const authenticateToken = require('../middleware/authenticateToken');
 
-// Step 1: Load the trained model and disease classes
-let model;
-const modelPath = path.join(__dirname, '../ml_model/saved_model/model.json');
-const diseaseClassesPath = path.join(__dirname, '../ml_model/disease_classes.json');
-const diseaseClasses = JSON.parse(fs.readFileSync(diseaseClassesPath, 'utf8'));
+// Path to the Python script
+const scriptPath = path.join(__dirname, '../ml_model/disease_prediction.py');
 
-tf.loadLayersModel(`file://${modelPath}`)
-    .then(loadedModel => {
-        model = loadedModel;
-        console.log('Model loaded successfully');
-    })
-    .catch(err => console.error('Failed to load model:', err));
-
-// Step 2: Create Prediction Endpoint
+// Prediction Endpoint
 router.post('/', authenticateToken, async (req, res) => {
-    const { age, symptoms } = req.body; // Expecting `age` and `symptoms` in the request body
+    const { age, symptoms } = req.body;
 
     try {
-        if (!model) return res.status(500).json({ message: 'Model not loaded' });
+        // Validate input
+        if (!age || !symptoms || !Array.isArray(symptoms)) {
+            console.log("Invalid input data received:", req.body);
+            return res.status(400).json({ message: 'Invalid input data' });
+        }
 
-        // Prepare the input for prediction
-        const input = tf.tensor2d([[age, symptoms[0], symptoms[1], symptoms[2]]]); // Adjusted for three symptoms
+        // Prepare the input for the Python script
+        const input = JSON.stringify({ age, symptoms });
 
-        // Make a prediction
-        const prediction = model.predict(input);
-        const predictionArray = prediction.arraySync()[0];
+        console.log("Input sent to Python script:", input);
 
-        // Map prediction to diseases and get top 10
-        const topDiseases = predictionArray
-            .map((probability, index) => ({ disease: diseaseClasses[index], probability }))
-            .sort((a, b) => b.probability - a.probability)
-            .slice(0, 10); // Top 10 diseases
+        // Run the Python script
+        PythonShell.run(scriptPath, {
+            mode: 'text',  // Ensures results are returned as text
+            args: [input]
+        }, async (err, results) => {
+            if (err) {
+                console.error("Python script error:", err.message);
+                return res.status(500).json({ message: `Python script error: ${err.message}` });
+            }
 
-        // Find the user and update their record with the top prediction
-        const user = await User.findById(req.user.id);
-        if (!user) return res.status(404).json({ message: 'User not found' });
+            console.log("Raw results from Python script:", results);
 
-        user.diseasePredictions.push({
-            age,
-            symptoms,
-            diagnosis: topDiseases[0].disease, // Main prediction
-            date: new Date(),
+            if (results && results.length > 0) {
+                try {
+                    // Parse the prediction result
+                    const prediction = JSON.parse(results[0]);
+
+                    console.log("Parsed prediction result:", prediction);
+
+                    // Find the user and update their record with the prediction
+                    const user = await User.findById(req.user.id);
+                    if (!user) {
+                        console.error("User not found with ID:", req.user.id);
+                        return res.status(404).json({ message: 'User not found' });
+                    }
+
+                    user.diseasePredictions.push({
+                        age,
+                        symptoms,
+                        diagnosis: prediction.disease, // Assuming the prediction result contains a 'disease' field
+                        date: new Date(),
+                    });
+
+                    await user.save();
+
+                    console.log("User record updated with prediction:", user);
+
+                    res.status(200).json({ prediction });
+                } catch (parseError) {
+                    console.error("Error parsing Python script output:", parseError);
+                    return res.status(500).json({ message: "Error parsing Python script output" });
+                }
+            } else {
+                console.error("No prediction returned from the Python script.");
+                res.status(500).json({ message: 'No prediction returned from the Python script' });
+            }
         });
-
-        await user.save();
-
-        res.status(200).json({ topDiseases });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error("Server error:", error.message);
+        res.status(500).json({ message: `Server error: ${error.message}` });
     }
 });
 
