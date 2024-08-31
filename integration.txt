@@ -1,0 +1,19 @@
+Moved HTML files into a new folder named html
+Sockets k path bhi check krke update krna h 
+Test Folder path sahi krna hai as I moved testchat and testsocket into the test folder
+Have to merge my &Aastha's package json and lock files and then install the dependensies to the repo
+UserScheman bana hai sbka ek finally
+
+Not included --- UserMatching lder add hi kiya h 
+mongoplayground 
+
+
+Devanshi---
+--- I am not including user and Auth routes in the repo and will be take caring of them later
+---Usercontroller and authcontroller inside the the controller are not added in the repo from Devanshi wand however it should be considered lately
+db config also not added
+---User model,login model offcourse is not added too(check useraccount model)
+--- we can also update the feedback schema or make it update by any of the team mate
+--- Have to merge my, Aastha's & Devanshi's package json and lock files and then install the dependensies to the repo
+--- moved html files from public folder to our html folder
+--- Devanshi what 
