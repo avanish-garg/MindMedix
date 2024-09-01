@@ -90,4 +90,32 @@ const start = async () => {
                     io.to(matchId).emit('message', {
                         senderId,
                         message,
-    
+                        timestamp: chatMessage.timestamp
+                    });
+                } catch (error) {
+                    console.error('Error saving chat message:', error.message);
+                }
+            });
+
+            socket.on('disconnect', () => {
+                console.log('User disconnected');
+            });
+        });
+
+        // Start the Server
+        const PORT = process.env.PORT || 50009;
+        server.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
+    } catch (error) {
+        console.error("Error connecting to MongoDB:", error);
+    }
+};
+
+// Root Route
+app.get("/", (req, res) => {
+    res.send("Mental Health Self-Assessment API is Running");
+});
+
+// Start the server and connect to the database
+start();
