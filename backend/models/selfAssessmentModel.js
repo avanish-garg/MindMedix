@@ -13,6 +13,7 @@ const SelfAssessmentSchema = new mongoose.Schema({
         min: 1
     },
     gender: {
+        
         type: String,
         required: true,
         enum: ['male', 'female']
