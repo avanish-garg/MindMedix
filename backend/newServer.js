@@ -11,47 +11,12 @@ const path = require('path');
 // newServer.js - Initialize Express
 const app = express();
 
-<<<<<<< HEAD
 // Middleware to parse JSON
-=======
 // newServer.js - Middleware
->>>>>>> 9309d57c9df49d532e63c6874f9e813686a152b5
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-<<<<<<< HEAD
-// Routes
-const progressRoutes = require('./routes/progress');
-const moodRoutes = require('./routes/mood');
-const authRoutes = require('./routes/auth'); // Added auth routes
-const predictRoutes = require('./routes/predict'); // Added predict routes
-const forgotPasswordRoutes = require('./routes/forgotPassword');
-const resetPasswordRoutes = require('./routes/resetPassword');
-const selfAssessmentRoute = require("./routes/selfAssessment");
-const emergencyContactRoute = require("./routes/emergencyContact");
-const matchRoutes = require('./routes/match');
-const cors = require('cors');
-//const videoCallRoutes = require('./routes/videoCallRoutes');
-
-// Use Routes
-
-app.use('/api/progress', progressRoutes);
-app.use('/api/mood', moodRoutes);
-app.use('/api/auth', authRoutes);        // Authentication routes
-app.use('/api/predict', predictRoutes);  // Prediction routes
-app.use('/api/tips', require('./routes/tips'));
-app.use('/api/users', require('./routes/userRoutes'));
-app.use('/api/feedback', require('./routes/feedbackRoutes'));
-app.use('/api', require('./routes/chatbotRoutes'));
-app.use('/forgot-password', forgotPasswordRoutes);
-app.use('/reset-password', resetPasswordRoutes);
-app.use('/api/self-assessment', selfAssessmentRoute); // Self-Assessment route
-app.use('/api/emergency-contact', emergencyContactRoute); // Emergency Contact route
-app.use('/api/match', matchRoutes); // Matching routes
-
-//app.use('/api/video', videoCallRoutes); // Video call routes
-=======
 // newServer.js - Routes
 const routes = {
     progress: require('./routes/progress'),
@@ -84,19 +49,13 @@ app.use('/api/self-assessment', routes.selfAssessment);
 app.use('/api/emergency-contact', routes.emergencyContact);
 app.use('/api/match', routes.match);
 //app.use('/api/video', routes.videoCall); // Uncomment if needed
->>>>>>> 9309d57c9df49d532e63c6874f9e813686a152b5
 
 // newServer.js - MongoDB Connection
 const start = async () => {
     try {
-<<<<<<< HEAD
-        await mongoose.connect(process.env.MONGO_URI || "mongodb+srv://avanish:jaijinendra@pandavastrial.n7bpfrh.mongodb.net/?retryWrites=true&w=majority&appName=PANDAVASTRIAL", {
-            serverSelectionTimeoutMS: 5000, // Increase timeout
-=======
         const mongoUri = process.env.MONGO_URI || "mongodb+srv://avanish:jaijinendra@pandavastrial.n7bpfrh.mongodb.net/?retryWrites=true&w=majority&appName=PANDAVASTRIAL";
         await mongoose.connect(mongoUri, {
             serverSelectionTimeoutMS: 5000,
->>>>>>> 9309d57c9df49d532e63c6874f9e813686a152b5
         });
         console.log("Connected to MongoDB");
 
@@ -125,9 +84,6 @@ const start = async () => {
                 });
 
                 try {
-<<<<<<< HEAD
-                    await chatMessage.save();
-=======
                     const Chat = mongoose.model('Chat', new mongoose.Schema({
                         matchId: String,
                         sender: String,
@@ -138,7 +94,6 @@ const start = async () => {
                     const chatMessage = new Chat({ matchId, sender: senderId, message });
                     await chatMessage.save();
 
->>>>>>> 9309d57c9df49d532e63c6874f9e813686a152b5
                     console.log(`Message saved: ${message}`);
                     io.to(matchId).emit('message', {
                         senderId,
