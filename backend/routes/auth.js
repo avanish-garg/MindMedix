@@ -8,7 +8,7 @@ const router = express.Router();
 // POST request for user registration
 router.post('/register', async (req, res) => {
     console.log('Received registration request:', req.body);        
-    const { username, email, password } = req.body;
+    const { username,age,gender,phoneno, email, password } = req.body;
 
   try {
     // Check if user already exists
@@ -22,6 +22,9 @@ router.post('/register', async (req, res) => {
     // Create new user
     user = new User({
       username,
+      age,
+      gender,
+      phoneno,
       email,
       password: hashedPassword,
     });

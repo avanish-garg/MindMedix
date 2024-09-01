@@ -18,10 +18,10 @@ app.use(express.json());
 
 // Routes
 const matchRoutes = require('./routes/match');
-const videoCallRoutes = require('./routes/videoCallRoutes'); // Import video call routes
+//const videoCallRoutes = require('./routes/videoCallRoutes'); // Import video call routes
 
 app.use('/api/match', matchRoutes);
-app.use('/api/video', videoCallRoutes); // Set up video call routes
+//app.use('/api/video', videoCallRoutes); // Set up video call routes
 
 // Serve the chat HTML file
 app.get('/chat', (req, res) => {
