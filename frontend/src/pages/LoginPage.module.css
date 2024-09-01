@@ -1,0 +1,207 @@
+.arrowLeftCircleIcon {
+  height: 48px;
+  width: 48px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.welcomeBack {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: inherit;
+  font-weight: 600;
+  font-family: inherit;
+}
+.arrowLeftCircleParent,
+.welcomeBackWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.welcomeBackWrapper {
+  flex: 1;
+  flex-direction: column;
+  padding: 168px 0 0;
+  box-sizing: border-box;
+  min-width: 260px;
+  max-width: 100%;
+}
+.arrowLeftCircleParent {
+  width: 474px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: var(--gap-7xl);
+  max-width: calc(100% - 924px);
+  flex-shrink: 0;
+}
+.callDoctorConceptDoctorsAnIcon {
+  height: 411px;
+  width: 758px;
+  position: absolute;
+  margin: 0 !important;
+  bottom: -100px;
+  left: -682px;
+  object-fit: cover;
+  z-index: 1;
+}
+.callDoctorConceptDoctorsAnParent,
+.frameParent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.callDoctorConceptDoctorsAnParent {
+  margin-top: -129px;
+  height: 850px;
+  flex: 1;
+  position: relative;
+  max-width: calc(100% - 602px);
+}
+.frameParent {
+  align-self: stretch;
+  height: 766px;
+  padding: var(--padding-26xl) 0 0;
+  box-sizing: border-box;
+  gap: 128px;
+  flex-shrink: 0;
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--font-size-45xl);
+  color: var(--color-black);
+  font-family: var(--font-lexend-exa);
+}
+.mindmedixLogo2 {
+  height: 66px;
+  width: 92px;
+  position: absolute;
+  margin: 0 !important;
+  top: -15px;
+  left: -84px;
+  object-fit: cover;
+}
+.mindmedix {
+  margin: 0;
+  height: 37px;
+  flex: 1;
+  position: relative;
+  font-size: inherit;
+  line-height: 36px;
+  font-weight: 700;
+  font-family: inherit;
+  display: inline-block;
+  flex-shrink: 0;
+  max-width: 100%;
+  z-index: 1;
+}
+.loginPage,
+.loginPageInner,
+.mindmedixLogo2Parent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.mindmedixLogo2Parent {
+  width: 373px;
+  flex-direction: row;
+  position: relative;
+  max-width: 137%;
+  flex-shrink: 0;
+}
+.loginPage,
+.loginPageInner {
+  box-sizing: border-box;
+}
+.loginPageInner {
+  align-self: stretch;
+  flex-direction: row;
+  padding: 0 0 0 1125px;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+.loginPage {
+  width: 100%;
+  height: 850px;
+  position: relative;
+  background: linear-gradient(89.42deg, #fff, rgba(44, 78, 151, 0.61));
+  overflow: hidden;
+  flex-direction: column;
+  padding: 0 0 var(--padding-65xl) var(--padding-23xl);
+  gap: 200px;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  font-size: var(--font-size-17xl);
+  color: var(--color-white);
+  font-family: var(--font-montserrat);
+}
+@media screen and (max-width: 1200px) {
+  .arrowLeftCircleParent {
+    max-width: 100%;
+  }
+  .callDoctorConceptDoctorsAnParent {
+    display: none;
+  }
+  .frameParent {
+    gap: 64px;
+  }
+  .loginPageInner {
+    padding-left: 562px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 1050px) {
+  .welcomeBack {
+    font-size: var(--font-size-32xl);
+  }
+  .arrowLeftCircleParent {
+    display: none;
+  }
+  .callDoctorConceptDoctorsAnParent {
+    max-width: 100%;
+  }
+  .mindmedix {
+    font-size: var(--font-size-10xl);
+    line-height: 29px;
+  }
+}
+@media screen and (max-width: 750px) {
+  .frameParent {
+    gap: var(--gap-13xl);
+    padding-top: var(--padding-10xl);
+    box-sizing: border-box;
+  }
+  .loginPageInner {
+    padding-left: 281px;
+    box-sizing: border-box;
+  }
+  .loginPage {
+    gap: 100px;
+    padding-left: var(--padding-2xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .welcomeBack {
+    font-size: var(--font-size-19xl);
+  }
+  .frameParent {
+    height: auto;
+    gap: var(--gap-base);
+  }
+  .mindmedix {
+    font-size: var(--font-size-3xl);
+    line-height: 22px;
+  }
+  .loginPageInner {
+    padding-left: var(--padding-xl);
+    box-sizing: border-box;
+  }
+  .loginPage {
+    height: auto;
+    gap: var(--gap-31xl);
+  }
+}

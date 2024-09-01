@@ -1,22 +1,27 @@
 # predict.py
-import sys
-import joblib
-import pandas as pd
-import json
 
-# Load the model and scaler
-model = joblib.load('random_forest_model.pkl')
-scaler = joblib.load('scaler.pkl')
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras.models import load_model
 
-# Parse input data
-input_data = json.loads(sys.argv[1])
-input_df = pd.DataFrame([input_data])
+# Load the model and label encoder
+model = load_model('disease_prediction_model.h5')
+label_classes = np.load('label_encoder.npy')
 
-# Scale input data
-input_scaled = scaler.transform(input_df)
+def predict_disease(input_features):
+    """
+    input_features: numpy array of shape (n_features,)
+    """
+    input_features = np.array(input_features).reshape(1, -1)
+    prediction = model.predict(input_features)
+    predicted_class = np.argmax(prediction, axis=1)[0]
+    disease_name = label_classes[predicted_class]
+    confidence = np.max(prediction)
+    return disease_name, confidence
 
-# Make prediction
-prediction = model.predict(input_scaled)
-
-# Print the prediction (this will be sent back to the Node.js server)
-print(prediction[0])
+# Example usage
+if __name__ == "__main__":
+    # Replace with actual input features
+    sample_input = [0.5] * model.input_shape[1]
+    disease, confidence = predict_disease(sample_input)
+    print(f"Predicted Disease: {disease} with confidence {confidence*100:.2f}%")

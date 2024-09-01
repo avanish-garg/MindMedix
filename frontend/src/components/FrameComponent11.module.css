@@ -1,0 +1,156 @@
+.communityContentChild {
+  height: 605px;
+  width: 1439px;
+  position: relative;
+  box-shadow: 0 10px 50px 5px rgba(0, 0, 0, 0.25),
+    0 10px 50px 5px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(180deg, #10608f, #051c29);
+  display: none;
+  max-width: 100%;
+}
+.welcomeToOur {
+  margin: 0;
+  flex: 1;
+  position: relative;
+  font-size: inherit;
+  line-height: 48px;
+  font-weight: 700;
+  font-family: inherit;
+  display: inline-block;
+  max-width: 100%;
+  z-index: 2;
+}
+.welcomeHeading {
+  width: 467px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-smi);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.findSupportGuidance {
+  align-self: stretch;
+  position: relative;
+  font-size: var(--font-size-xl);
+  line-height: 48px;
+  text-align: center;
+  z-index: 2;
+}
+.title {
+  position: relative;
+  font-size: var(--font-size-base);
+  line-height: 24px;
+  font-weight: 500;
+  font-family: var(--font-roboto);
+  color: var(--color-black);
+  text-align: left;
+  display: inline-block;
+  min-width: 82px;
+}
+.primary {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-xs) var(--padding-20xl);
+  background-color: var(--color-white);
+  border-radius: var(--br-5xs);
+  flex-direction: row;
+  white-space: nowrap;
+  z-index: 2;
+}
+.primary:hover {
+  background-color: var(--color-gainsboro-200);
+}
+.counselingServicesButtonCon,
+.learnButton,
+.primary,
+.welcomeParagraph {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.learnButton {
+  flex-direction: row;
+  padding: 0 var(--padding-smi);
+}
+.counselingServicesButtonCon,
+.welcomeParagraph {
+  flex-direction: column;
+  max-width: 100%;
+}
+.welcomeParagraph {
+  align-self: stretch;
+  gap: var(--gap-4xl);
+}
+.counselingServicesButtonCon {
+  flex: 1;
+  padding: var(--padding-75xl) 0 0;
+  box-sizing: border-box;
+  min-width: 375px;
+}
+.community1Icon {
+  width: 525px;
+  position: relative;
+  max-height: 100%;
+  object-fit: cover;
+  max-width: 100%;
+  z-index: 2;
+}
+.communityContent {
+  flex: 1;
+  box-shadow: 0 10px 50px 5px rgba(0, 0, 0, 0.25),
+    0 10px 50px 5px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(180deg, #10608f, #051c29);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--padding-50xl) var(--padding-66xl) var(--padding-74xl)
+    var(--padding-123xl);
+  box-sizing: border-box;
+  gap: var(--gap-91xl);
+  max-width: 100%;
+  z-index: 1;
+  text-align: left;
+  font-size: var(--font-size-21xl);
+  color: var(--color-white);
+  font-family: var(--font-roboto);
+}
+@media screen and (max-width: 1200px) {
+  .community1Icon {
+    flex: 1;
+  }
+  .communityContent {
+    gap: var(--gap-36xl);
+    flex-wrap: wrap;
+    padding-left: var(--padding-52xl);
+    padding-right: var(--padding-23xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 750px) {
+  .welcomeToOur {
+    font-size: var(--font-size-13xl);
+    line-height: 38px;
+  }
+  .counselingServicesButtonCon {
+    min-width: 100%;
+  }
+  .communityContent {
+    gap: var(--gap-8xl);
+    padding: var(--padding-26xl) var(--padding-2xl) var(--padding-41xl)
+      var(--padding-16xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .welcomeToOur {
+    font-size: var(--font-size-5xl);
+    line-height: 29px;
+  }
+  .findSupportGuidance {
+    font-size: var(--font-size-base);
+    line-height: 38px;
+  }
+}

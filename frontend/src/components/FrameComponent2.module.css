@@ -1,0 +1,147 @@
+.detectionContentChild {
+  height: 500px;
+  width: 1439px;
+  position: relative;
+  box-shadow: 0 10px 50px 5px rgba(0, 0, 0, 0.25),
+    0 10px 50px 5px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(180deg, #10608f, #051c29);
+  display: none;
+  max-width: 100%;
+}
+.diseasePrediction {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 700;
+  font-family: inherit;
+}
+.diseasePrediction,
+.earlyDetectionOf {
+  position: relative;
+  line-height: 48px;
+  z-index: 2;
+}
+.earlyDetectionOfDiseaseWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-9xs);
+  font-size: var(--font-size-xl);
+}
+.title {
+  position: relative;
+  font-size: var(--font-size-base);
+  line-height: 24px;
+  font-weight: 500;
+  font-family: var(--font-roboto);
+  color: var(--color-black);
+  text-align: left;
+  display: inline-block;
+  min-width: 82px;
+}
+.detectionBlock,
+.diseasePredictionParent,
+.primary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.primary {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-xs) var(--padding-20xl);
+  background-color: var(--color-white);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: var(--br-5xs);
+  flex-direction: row;
+  white-space: nowrap;
+  z-index: 2;
+}
+.primary:hover {
+  background-color: var(--color-gainsboro-200);
+}
+.detectionBlock,
+.diseasePredictionParent {
+  flex-direction: column;
+}
+.diseasePredictionParent {
+  align-self: stretch;
+  gap: var(--gap-4xs);
+}
+.detectionBlock {
+  width: 540px;
+  padding: 0 0 var(--padding-83xl);
+  box-sizing: border-box;
+  min-width: 540px;
+  min-height: 264px;
+  max-width: 100%;
+}
+.asset21 {
+  width: 378px;
+  position: relative;
+  max-height: 100%;
+  object-fit: cover;
+  max-width: 100%;
+  z-index: 2;
+}
+.detectionContent {
+  flex: 1;
+  box-shadow: 0 10px 50px 5px rgba(0, 0, 0, 0.25),
+    0 10px 50px 5px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(180deg, #10608f, #051c29);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: var(--padding-47xl) var(--padding-112xl) var(--padding-37xl)
+    var(--padding-122xl);
+  box-sizing: border-box;
+  max-width: 100%;
+  gap: var(--gap-xl);
+  z-index: 1;
+  text-align: left;
+  font-size: var(--font-size-45xl);
+  color: var(--color-white);
+  font-family: var(--font-roboto);
+}
+@media screen and (max-width: 1200px) {
+  .asset21,
+  .detectionBlock {
+    flex: 1;
+  }
+  .detectionContent {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 1050px) {
+  .detectionBlock {
+    min-width: 100%;
+  }
+}
+@media screen and (max-width: 750px) {
+  .diseasePrediction {
+    font-size: var(--font-size-32xl);
+    line-height: 38px;
+  }
+  .detectionContent {
+    padding: var(--padding-24xl) var(--padding-46xl) var(--padding-17xl)
+      var(--padding-51xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .diseasePrediction {
+    font-size: var(--font-size-19xl);
+    line-height: 29px;
+  }
+  .earlyDetectionOf {
+    font-size: var(--font-size-base);
+    line-height: 38px;
+  }
+  .detectionContent {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}

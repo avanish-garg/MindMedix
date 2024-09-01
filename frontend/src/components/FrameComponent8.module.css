@@ -1,0 +1,222 @@
+.frameChild {
+  position: absolute;
+  top: 38px;
+  left: 1070px;
+  border-radius: var(--br-81xl);
+  width: 21px;
+  height: 21px;
+  object-fit: cover;
+  display: none;
+}
+.frameItem {
+  top: 15px;
+  left: 1059px;
+  border-right: 1px solid var(--color-black);
+  width: 1px;
+  height: 37px;
+}
+.frameInner,
+.frameItem,
+.rectangleDiv {
+  position: absolute;
+  box-sizing: border-box;
+  display: none;
+}
+.frameInner {
+  top: 15px;
+  left: 1268px;
+  border-right: 1px solid var(--color-black);
+  width: 1px;
+  height: 37px;
+}
+.rectangleDiv {
+  top: 0;
+  left: 0;
+  background-color: var(--color-midnightblue);
+  border: 1px solid var(--color-black);
+  width: 100%;
+  height: 100%;
+}
+.mindmedixLogo1 {
+  position: absolute;
+  height: calc(100% - 15.8px);
+  top: 7.9px;
+  bottom: 7.9px;
+  left: 8px;
+  max-height: 100%;
+  width: 92px;
+  object-fit: cover;
+  z-index: 1;
+}
+.mindmedix {
+  text-decoration: none;
+  position: relative;
+  line-height: 36px;
+  font-weight: 700;
+  color: inherit;
+  white-space: nowrap;
+  z-index: 2;
+}
+.mindmedixWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-8xs-9) var(--padding-xl) 0 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  font-size: var(--font-size-17xl);
+}
+.community,
+.therapy {
+  text-decoration: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 36px;
+  color: inherit;
+  display: inline-block;
+  width: 72px;
+  height: 35px;
+  min-width: 72px;
+  cursor: pointer;
+  z-index: 3;
+}
+.community {
+  left: 92px;
+  width: 103px;
+  min-width: 103px;
+}
+.therapyParent {
+  align-self: stretch;
+  height: 35px;
+  position: relative;
+}
+.frameWrapper {
+  width: 214px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-9xs-2) var(--padding-lgi) 0 0;
+  box-sizing: border-box;
+  font-family: var(--font-roboto);
+}
+.about,
+.moodTracker {
+  text-decoration: none;
+  position: relative;
+  line-height: 36px;
+  color: inherit;
+  display: inline-block;
+  white-space: nowrap;
+  z-index: 3;
+}
+.moodTracker {
+  min-width: 123px;
+  cursor: pointer;
+}
+.about {
+  min-width: 54px;
+}
+.greeting,
+.moodTrackerParent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.moodTrackerParent {
+  flex-direction: row;
+  padding: 0 var(--padding-xl) 0 0;
+  gap: var(--gap-xl);
+}
+.greeting {
+  width: 360px;
+  flex-direction: column;
+  padding: var(--padding-9xs-2) 0 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  font-family: var(--font-roboto);
+}
+.ellipseDiv {
+  position: absolute;
+  top: 2.9px;
+  right: 8px;
+  border-radius: 50%;
+  background-color: var(--color-gainsboro-300);
+  width: 40px;
+  height: 39.5px;
+}
+.userProfileIconFreeVector {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.ellipseParent {
+  height: 45.4px;
+  width: 55px;
+  position: relative;
+  z-index: 1;
+}
+.helloAkshat {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 36px;
+  font-weight: 700;
+  font-family: inherit;
+  white-space: nowrap;
+  z-index: 1;
+}
+.frameParent,
+.helloAkshatWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.helloAkshatWrapper {
+  flex-direction: column;
+  padding: var(--padding-8xs-9) 0 0;
+  font-size: var(--font-size-13xl);
+}
+.frameParent {
+  position: absolute;
+  top: 17.8px;
+  left: 92px;
+  width: 1285px;
+  flex-direction: row;
+  gap: var(--gap-12xs);
+  max-width: 100%;
+}
+.rectangleParent {
+  height: 81px;
+  flex: 1;
+  position: relative;
+  background-color: var(--color-midnightblue);
+  border: 1px solid var(--color-black);
+  box-sizing: border-box;
+  max-width: 100%;
+  z-index: 2;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color-white);
+  font-family: var(--font-montserrat);
+}
+.homepageAfterSignUpOrLogiInner {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 0 var(--padding-mini);
+  box-sizing: border-box;
+  top: 0;
+  z-index: 99;
+  position: sticky;
+  max-width: 100%;
+}

@@ -1,0 +1,127 @@
+.frameChild {
+  height: 82px;
+  width: 1440px;
+  position: relative;
+  background-color: var(--color-midnightblue);
+  border: 1px solid var(--color-black);
+  box-sizing: border-box;
+  display: none;
+  max-width: 100%;
+}
+.mindmedixLogo1 {
+  height: 66px;
+  width: 92.1px;
+  position: absolute;
+  margin: 0 !important;
+  top: calc(50% - 33px);
+  left: -84.1px;
+  object-fit: cover;
+  z-index: 1;
+}
+.mindmedix {
+  text-decoration: none;
+  position: relative;
+  line-height: 36px;
+  font-weight: 700;
+  color: inherit;
+  white-space: nowrap;
+  z-index: 2;
+}
+.mindMedixContainer,
+.mindMedixContainerWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.mindMedixContainer {
+  align-self: stretch;
+  flex-direction: row;
+  position: relative;
+}
+.mindMedixContainerWrapper {
+  width: 210.1px;
+  flex-direction: column;
+  padding: var(--padding-8xs) 0 0;
+  box-sizing: border-box;
+}
+.profileCircle {
+  position: absolute;
+  top: 3px;
+  left: 7.1px;
+  border-radius: 50%;
+  background-color: var(--color-gainsboro-300);
+  width: 40px;
+  height: 40px;
+}
+.userProfileIconFreeVector {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.profileCircleParent {
+  height: 46px;
+  width: 55px;
+  position: relative;
+  z-index: 1;
+}
+.akshat {
+  text-decoration: none;
+  position: relative;
+  line-height: 36px;
+  font-weight: 700;
+  color: inherit;
+  white-space: nowrap;
+  z-index: 1;
+}
+.rectangleParent,
+.userContainer,
+.userName {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.userName {
+  flex-direction: column;
+  padding: var(--padding-8xs) 0 0;
+}
+.rectangleParent,
+.userContainer {
+  flex-direction: row;
+  gap: var(--gap-11xs-1);
+  font-size: var(--font-size-13xl);
+}
+.rectangleParent {
+  align-self: stretch;
+  background-color: var(--color-midnightblue);
+  border: 1px solid var(--color-black);
+  box-sizing: border-box;
+  justify-content: space-between;
+  padding: var(--padding-base) var(--padding-49xl) var(--padding-base)
+    var(--padding-73xl);
+  top: 0;
+  z-index: 99;
+  position: sticky;
+  max-width: 100%;
+  gap: var(--gap-xl);
+  text-align: left;
+  font-size: var(--font-size-17xl);
+  color: var(--color-white);
+  font-family: var(--font-montserrat);
+}
+@media screen and (max-width: 750px) {
+  .rectangleParent {
+    padding-left: var(--padding-27xl);
+    padding-right: var(--padding-15xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .rectangleParent {
+    padding-left: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}
