@@ -1,0 +1,228 @@
+.title {
+  position: absolute;
+  width: calc(100% - 32px);
+  top: calc(50% - 8px);
+  left: 16px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+}
+.image1Icon {
+  position: absolute;
+  top: 0;
+  left: -0.3px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.image,
+.subtitle,
+.title1 {
+  align-self: stretch;
+  position: relative;
+}
+.image {
+  height: 340px;
+  background-color: var(--color-gainsboro-100);
+}
+.subtitle,
+.title1 {
+  line-height: 24px;
+}
+.subtitle {
+  font-size: var(--font-size-xl);
+  line-height: 28px;
+  font-weight: 500;
+}
+.titleParent {
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gap-9xs);
+}
+.card,
+.cardContent,
+.titleParent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.cardContent {
+  align-self: stretch;
+  flex-direction: row;
+  padding: 0 var(--padding-xs);
+  text-align: left;
+  font-size: var(--font-size-base);
+}
+.card {
+  width: 340px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: var(--br-7xs);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-800);
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  flex-direction: column;
+  padding: 0 0 var(--padding-3xs);
+  gap: var(--gap-xs);
+  min-width: 340px;
+  max-width: 100%;
+  z-index: 1;
+}
+.discoverOurCounseling,
+.exploreOurRange {
+  position: relative;
+  line-height: 48px;
+  z-index: 1;
+}
+.discoverOurCounseling {
+  margin: 0;
+  align-self: stretch;
+  font-size: inherit;
+  font-weight: 700;
+  font-family: inherit;
+}
+.exploreOurRange {
+  flex: 1;
+}
+.counselingDescription,
+.exploreOurRangeOfMentalHeWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.exploreOurRangeOfMentalHeWrapper {
+  width: 571px;
+  flex-direction: row;
+  padding: 0 var(--padding-6xl);
+  box-sizing: border-box;
+  font-size: var(--font-size-xl);
+}
+.counselingDescription {
+  align-self: stretch;
+  flex-direction: column;
+  gap: var(--gap-29xl);
+}
+.title2 {
+  position: relative;
+  font-size: var(--font-size-base);
+  line-height: 24px;
+  font-weight: 500;
+  font-family: var(--font-roboto);
+  color: var(--color-white);
+  text-align: left;
+}
+.primary,
+.primaryWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.primary {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-xs) var(--padding-smi);
+  background-color: var(--color-black);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: var(--br-5xs);
+  white-space: nowrap;
+  z-index: 1;
+}
+.primary:hover {
+  background-color: var(--color-darkslategray);
+}
+.primaryWrapper {
+  padding: 0 var(--padding-12xl);
+}
+.counselingContent {
+  align-self: stretch;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--gap-6xl);
+}
+.cardsContainer,
+.counselingContent,
+.serviceDescription,
+.services {
+  display: flex;
+  align-items: flex-start;
+  max-width: 100%;
+}
+.services {
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: var(--padding-65xl) 0 0;
+  box-sizing: border-box;
+  min-width: 430px;
+  font-size: var(--font-size-21xl);
+}
+.cardsContainer,
+.serviceDescription {
+  flex-direction: row;
+}
+.cardsContainer {
+  width: 1103px;
+  justify-content: flex-start;
+  gap: var(--gap-83xl);
+}
+.serviceDescription {
+  width: 1367px;
+  justify-content: center;
+  padding: 0 var(--padding-xl) var(--padding-13xl);
+  box-sizing: border-box;
+  text-align: center;
+  font-size: var(--font-size-xs);
+  color: var(--color-black);
+  font-family: var(--font-roboto);
+}
+@media screen and (max-width: 1200px) {
+  .cardsContainer {
+    gap: var(--gap-32xl);
+  }
+}
+@media screen and (max-width: 1050px) {
+  .card {
+    flex: 1;
+  }
+  .cardsContainer {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 750px) {
+  .discoverOurCounseling {
+    font-size: var(--font-size-13xl);
+    line-height: 38px;
+  }
+  .counselingDescription {
+    gap: var(--gap-5xl);
+  }
+  .services {
+    min-width: 100%;
+  }
+  .cardsContainer {
+    gap: var(--gap-6xl);
+  }
+}
+@media screen and (max-width: 450px) {
+  .subtitle {
+    font-size: var(--font-size-base);
+    line-height: 22px;
+  }
+  .card {
+    min-width: 100%;
+  }
+  .discoverOurCounseling {
+    font-size: var(--font-size-5xl);
+    line-height: 29px;
+  }
+  .exploreOurRange {
+    font-size: var(--font-size-base);
+    line-height: 38px;
+  }
+}

@@ -1,6 +1,4 @@
-// Load environment variables
 require('dotenv').config();
-
 const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
@@ -19,30 +17,30 @@ app.use(express.static('public'));
 // Routes
 const progressRoutes = require('./routes/progress');
 const moodRoutes = require('./routes/mood');
-const authRoutes = require('./routes/auth'); // Added auth routes
-const predictRoutes = require('./routes/predict'); // Added predict routes
+const authRoutes = require('./routes/auth');
+const predictRoutes = require('./routes/predict');
 const forgotPasswordRoutes = require('./routes/forgotPassword');
 const resetPasswordRoutes = require('./routes/resetPassword');
 const selfAssessmentRoute = require("./routes/selfAssessment");
 const emergencyContactRoute = require("./routes/emergencyContact");
 const matchRoutes = require('./routes/match');
-//const videoCallRoutes = require('./routes/videoCallRoutes');
+// const videoCallRoutes = require('./routes/videoCallRoutes');
 
 // Use Routes
 app.use('/api/progress', progressRoutes);
 app.use('/api/mood', moodRoutes);
-app.use('/api/auth', authRoutes);        // Authentication routes
-app.use('/api/predict', predictRoutes);  // Prediction routes
+app.use('/api/auth', authRoutes);
+app.use('/api/predict', predictRoutes);
 app.use('/api/tips', require('./routes/tips'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/feedback', require('./routes/feedbackRoutes'));
 app.use('/api', require('./routes/chatbotRoutes'));
 app.use('/forgot-password', forgotPasswordRoutes);
 app.use('/reset-password', resetPasswordRoutes);
-app.use('/api/self-assessment', selfAssessmentRoute); // Self-Assessment route
-app.use('/api/emergency-contact', emergencyContactRoute); // Emergency Contact route
-app.use('/api/match', matchRoutes); // Matching routes
-//app.use('/api/video', videoCallRoutes); // Video call routes
+app.use('/api/self-assessment', selfAssessmentRoute);
+app.use('/api/emergency-contact', emergencyContactRoute);
+app.use('/api/match', matchRoutes);
+// app.use('/api/video', videoCallRoutes);
 
 // MongoDB Connection
 const start = async () => {

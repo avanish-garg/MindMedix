@@ -1,0 +1,600 @@
+.callDoctorConceptDoctorsAnIcon {
+  height: 411px;
+  width: 758px;
+  position: absolute;
+  margin: 0 !important;
+  bottom: -13px;
+  left: -38px;
+  object-fit: cover;
+  z-index: 1;
+}
+.arrowLeftCircleIcon {
+  width: 48px;
+  height: 48px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.bookYourAppointment {
+  flex: 1;
+  position: relative;
+  font-weight: 600;
+  display: inline-block;
+  max-width: 100%;
+}
+.arrowLeftCircleParent,
+.bookYourAppointmentTodayWrapper,
+.primaryTitle {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.bookYourAppointmentTodayWrapper {
+  align-self: stretch;
+  flex-direction: row;
+  padding: 0 0 0 var(--padding-9xs);
+  box-sizing: border-box;
+}
+.arrowLeftCircleParent,
+.primaryTitle {
+  flex-direction: column;
+}
+.arrowLeftCircleParent {
+  align-self: stretch;
+  gap: 120px;
+}
+.primaryTitle {
+  width: 404px;
+  padding: var(--padding-26xl) 0 0;
+  box-sizing: border-box;
+  min-width: 404px;
+}
+.formContainerChild {
+  align-self: stretch;
+  height: 850px;
+  position: relative;
+  box-shadow: -2px 4px 22px rgba(0, 0, 0, 0.25),
+    -2px 4px 20px rgba(0, 0, 0, 0.25), -4px 4px 11px rgba(0, 0, 0, 0.25),
+    -5px 4px 8px rgba(0, 0, 0, 0.25), -8px 4px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 0 0 0 var(--br-346xl);
+  background-color: var(--color-gainsboro-300);
+  display: none;
+}
+.medicalBg3 {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+.createAccount,
+.medicalBg3,
+.medicalBg4 {
+  position: absolute;
+  margin: 0 !important;
+}
+.medicalBg4 {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: contain;
+  z-index: 2;
+}
+.createAccount {
+  top: 122px;
+  left: -308px;
+  font-size: var(--font-size-29xl);
+  font-weight: 600;
+  font-family: var(--font-inter);
+  color: var(--color-black);
+  text-align: left;
+  z-index: 3;
+}
+.nameEmailInputsChild {
+  height: 52px;
+  width: 470px;
+  position: relative;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-gainsboro-300);
+  border: 1px solid var(--color-black);
+  box-sizing: border-box;
+  display: none;
+  max-width: 100%;
+}
+.name {
+  position: relative;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  font-family: var(--font-lexend-exa);
+  color: var(--color-black);
+  text-align: left;
+  display: inline-block;
+  min-width: 72px;
+  z-index: 4;
+}
+.nameEmailInputs1 {
+  width: 470px;
+  margin: 0 !important;
+  position: absolute;
+  bottom: 104.8px;
+  left: -300px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-gainsboro-300);
+  border: 1px solid var(--color-black);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-2xs) var(--padding-lgi);
+  max-width: 100%;
+  z-index: 3;
+}
+.email {
+  position: relative;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  font-family: var(--font-lexend-exa);
+  color: var(--color-black);
+  text-align: left;
+  display: inline-block;
+  min-width: 71px;
+  z-index: 4;
+}
+.detailFieldsChild,
+.phoneNumberField {
+  border-radius: var(--br-3xs);
+  background-color: var(--color-gainsboro-300);
+  border: 1px solid var(--color-black);
+  box-sizing: border-box;
+}
+.phoneNumberField {
+  width: 470px;
+  margin: 0 !important;
+  position: absolute;
+  bottom: 14.8px;
+  left: -300px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-2xs) var(--padding-lgi);
+  max-width: 100%;
+  z-index: 3;
+}
+.detailFieldsChild {
+  height: 52px;
+  width: 237px;
+  position: relative;
+  display: none;
+}
+.gender {
+  position: relative;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  font-family: var(--font-lexend-exa);
+  color: var(--color-black);
+  text-align: left;
+  display: inline-block;
+  min-width: 91px;
+  z-index: 4;
+}
+.demographicLabelsChild,
+.detailFields {
+  border-radius: var(--br-3xs);
+  background-color: var(--color-gainsboro-300);
+  border: 1px solid var(--color-black);
+}
+.detailFields {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-2xs) var(--padding-5xl) var(--padding-3xs);
+  z-index: 3;
+}
+.demographicLabelsChild {
+  height: 52px;
+  width: 137px;
+  position: relative;
+  box-sizing: border-box;
+  display: none;
+}
+.age {
+  position: relative;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  font-family: var(--font-lexend-exa);
+  color: var(--color-black);
+  text-align: left;
+  display: inline-block;
+  min-width: 47px;
+  z-index: 4;
+}
+.demographicLabels,
+.nameEmailInputs {
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+.demographicLabels {
+  width: 137px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-gainsboro-300);
+  border: 1px solid var(--color-black);
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: var(--padding-2xs) var(--padding-xs);
+  z-index: 3;
+}
+.nameEmailInputs {
+  width: 100%;
+  margin: 0 !important;
+  position: absolute;
+  top: -366px;
+  left: -3px;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 247px 135px 14.8px 195px;
+  gap: var(--gap-20xl);
+  max-width: 100%;
+}
+.nameEmailFieldsChild {
+  height: 52px;
+  width: 544px;
+  position: relative;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-gainsboro-300);
+  border: 1px solid var(--color-black);
+  box-sizing: border-box;
+  display: none;
+  max-width: 100%;
+}
+.phoneNo {
+  width: 127px;
+  border: 0;
+  outline: 0;
+  font-weight: 600;
+  font-family: var(--font-lexend-exa);
+  font-size: var(--font-size-xl);
+  background-color: transparent;
+  height: 25px;
+  position: relative;
+  color: var(--color-black);
+  text-align: left;
+  display: inline-block;
+  padding: 0;
+  z-index: 3;
+}
+.demographicLabelsItem,
+.nameEmailFields {
+  border-radius: var(--br-3xs);
+  background-color: var(--color-gainsboro-300);
+  border: 1px solid var(--color-black);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.nameEmailFields {
+  width: 544px;
+  margin: 0 !important;
+  position: absolute;
+  top: 61px;
+  left: -303px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-2xs) var(--padding-lgi);
+  z-index: 2;
+}
+.demographicLabelsItem {
+  height: 52px;
+  width: 447px;
+  position: relative;
+  display: none;
+}
+.password {
+  position: relative;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  font-family: var(--font-lexend-exa);
+  color: var(--color-black);
+  text-align: left;
+  display: inline-block;
+  min-width: 117px;
+  z-index: 3;
+}
+.demographicLabels1 {
+  width: 447px;
+  margin: 0 !important;
+  position: absolute;
+  top: 151px;
+  left: -303px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-gainsboro-300);
+  border: 1px solid var(--color-black);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-2xs) var(--padding-lgi);
+  max-width: 100%;
+  z-index: 2;
+}
+.haveAnAccount,
+.title {
+  position: relative;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  text-align: left;
+}
+.haveAnAccount {
+  font-family: var(--font-inter);
+  color: var(--color-black);
+  z-index: 2;
+}
+.title {
+  line-height: 24px;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  display: inline-block;
+  min-width: 55px;
+}
+.bookAppointment,
+.primary {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.primary {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-7xs-5) var(--padding-14xl);
+  background-color: var(--color-darkslateblue-200);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: var(--br-5xs);
+  z-index: 2;
+}
+.primary:hover {
+  background-color: var(--color-darkslateblue-100);
+}
+.bookAppointment {
+  padding: 0 var(--padding-mini);
+}
+.formContainer,
+.inputFields,
+.medicalBg3Parent {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+.medicalBg3Parent {
+  margin: 0;
+  width: 566.1px;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 254px var(--padding-xl) 97.6px 55px;
+  box-sizing: border-box;
+  position: relative;
+  gap: var(--gap-lg);
+}
+.formContainer,
+.inputFields {
+  align-items: flex-end;
+}
+.inputFields {
+  width: 869.1px;
+  justify-content: flex-start;
+}
+.formContainer {
+  margin-top: -876px;
+  align-self: stretch;
+  box-shadow: -2px 4px 22px rgba(0, 0, 0, 0.25),
+    -2px 4px 20px rgba(0, 0, 0, 0.25), -4px 4px 11px rgba(0, 0, 0, 0.25),
+    -5px 4px 8px rgba(0, 0, 0, 0.25), -8px 4px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 0 0 0 var(--br-346xl);
+  background-color: var(--color-gainsboro-300);
+  justify-content: flex-end;
+  padding: 366px 0 var(--padding-10xs-4) 0;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+.mindmedixLogo2 {
+  height: 66px;
+  width: 92px;
+  position: absolute;
+  margin: 0 !important;
+  top: -15px;
+  left: -84px;
+  object-fit: cover;
+}
+.mindmedix {
+  flex: 1;
+  position: relative;
+  line-height: 37px;
+  display: inline-block;
+  flex-shrink: 0;
+  max-width: 100%;
+  z-index: 1;
+}
+.logoContainer,
+.logoContainerWrapper,
+.signUp,
+.signupForm {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.logoContainer {
+  width: 373px;
+  flex-direction: row;
+  position: relative;
+  max-width: 137%;
+  flex-shrink: 0;
+}
+.logoContainerWrapper,
+.signUp,
+.signupForm {
+  box-sizing: border-box;
+}
+.logoContainerWrapper {
+  align-self: stretch;
+  flex-direction: row;
+  padding: 0 0 0 686px;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+.signUp,
+.signupForm {
+  text-align: left;
+}
+.signupForm {
+  height: 829px;
+  flex: 1;
+  flex-direction: column;
+  padding: 792px 0 0;
+  gap: var(--gap-7xl);
+  min-width: 623px;
+  max-width: 100%;
+  font-size: var(--font-size-17xl);
+  color: var(--color-white);
+  font-family: var(--font-montserrat);
+}
+.signUp {
+  width: 100%;
+  position: relative;
+  background: linear-gradient(89.42deg, #fff, rgba(44, 78, 151, 0.61));
+  overflow: hidden;
+  flex-direction: row;
+  padding: 0 0 var(--padding-2xl) var(--padding-23xl);
+  gap: var(--gap-16xl);
+  line-height: normal;
+  letter-spacing: normal;
+  font-size: var(--font-size-29xl);
+  color: var(--color-black);
+  font-family: var(--font-lexend-exa);
+}
+@media screen and (max-width: 1200px) {
+  .primaryTitle {
+    flex: 1;
+  }
+  .signUp,
+  .signupForm {
+    box-sizing: border-box;
+  }
+  .signupForm {
+    padding-top: 515px;
+  }
+  .signUp {
+    flex-wrap: wrap;
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+  }
+}
+@media screen and (max-width: 1050px) {
+  .bookYourAppointment,
+  .createAccount {
+    font-size: var(--font-size-19xl);
+  }
+  .mindmedix {
+    font-size: var(--font-size-10xl);
+    line-height: 29px;
+  }
+  .logoContainerWrapper {
+    padding-left: 343px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 750px) {
+  .primaryTitle {
+    min-width: 100%;
+  }
+  .nameEmailInputs {
+    gap: var(--gap-lgi);
+    padding-left: 97px;
+    padding-right: var(--padding-48xl);
+    box-sizing: border-box;
+  }
+  .medicalBg3Parent {
+    padding-top: 165px;
+    padding-bottom: 63px;
+    box-sizing: border-box;
+  }
+  .formContainer {
+    padding-top: 238px;
+    padding-bottom: var(--padding-xl);
+    box-sizing: border-box;
+  }
+  .logoContainerWrapper {
+    padding-left: 171px;
+    box-sizing: border-box;
+  }
+  .signupForm {
+    padding-top: 335px;
+    box-sizing: border-box;
+    min-width: 100%;
+  }
+  .signUp {
+    gap: var(--gap-mid);
+  }
+}
+@media screen and (max-width: 450px) {
+  .bookYourAppointment {
+    font-size: var(--font-size-10xl);
+  }
+  .arrowLeftCircleParent {
+    gap: var(--gap-41xl);
+  }
+  .primaryTitle {
+    padding-top: var(--padding-10xl);
+    box-sizing: border-box;
+  }
+  .createAccount {
+    font-size: var(--font-size-10xl);
+  }
+  .age,
+  .email,
+  .gender,
+  .name {
+    font-size: var(--font-size-base);
+  }
+  .nameEmailInputs {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+  }
+  .haveAnAccount,
+  .password,
+  .phoneNo,
+  .title {
+    font-size: var(--font-size-base);
+  }
+  .title {
+    line-height: 19px;
+  }
+  .mindmedix {
+    font-size: var(--font-size-3xl);
+    line-height: 22px;
+  }
+  .logoContainerWrapper {
+    padding-left: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}
