@@ -16,4 +16,7 @@ db config also not added
 --- we can also update the feedback schema or make it update by any of the team mate
 --- Have to merge my, Aastha's & Devanshi's package json and lock files and then install the dependensies to the repo
 --- moved html files from public folder to our html folder
---- Devanshi what 
+--- Devanshi what she has done is made different JS files for each test like index, forgot pass, login, server, tip, etc so what I have to do is to merge them all under our server.js or distribute our files too!
+
+Integration flow ---
+first of all I think I need to update my userschema acc to all three of ours and even before that I think wen need to first take a deep breath and check for the possible outcomes with our findings so lets first reseach and make our axe stronger and then we'll mmove on to breaking of the pad;)	

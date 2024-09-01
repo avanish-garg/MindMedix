@@ -3,6 +3,7 @@
 require('dotenv').config(); // This loads the environment variables
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors'); // To handle CORS issues
 
 const progressRoutes = require('./routes/progress');
 const moodRoutes = require('./routes/mood');
@@ -11,12 +12,13 @@ const predictRoutes = require('./routes/predict'); // Added predict routes
 
 const app = express();
 app.use(express.json());
+app.use(cors()); // Use CORS middleware
 
 // MongoDB connection string, hardcoded
 const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://avanish:jaijinendra@pandavastrial.n7bpfrh.mongodb.net/?retryWrites=true&w=majority&appName=PANDAVASTRIAL';
 
-// backend/server.js
-mongoose.connect(mongoURI)
+// Connect to MongoDB
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('MongoDB connected...'))
 .catch(err => console.error('MongoDB connection error:', err));
 

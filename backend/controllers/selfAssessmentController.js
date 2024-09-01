@@ -1,4 +1,4 @@
-const SelfAssessment = require('../models/SelfAssessment');
+const SelfAssessment = require('../models/selfAssessmentModel');
 
 // Controller function example
 exports.createAssessment = async (req, res) => {
