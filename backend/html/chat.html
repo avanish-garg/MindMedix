@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <style>
+        #chat-container {
+            margin: 20px;
+        }
+        #messages {
+            height: 200px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <h2>Join Chat Room</h2>
+        <input type="text" id="userId" placeholder="Enter your User ID">
+        <input type="text" id="matchId" placeholder="Enter Match ID">
+        <button onclick="joinRoom()">Join Room</button>
+
+        <div id="chat-room" style="display:none;">
+            <div id="messages"></div>
+            <input type="text" id="messageInput" placeholder="Enter your message">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        function joinRoom() {
+            const userId = document.getElementById('userId').value;
+            const matchId = document.getElementById('matchId').value;
+
+            if (userId && matchId) {
+                socket.emit('joinRoom', { userId, matchId });
+                document.getElementById('chat-room').style.display = 'block';
+            } else {
+                alert('Please enter both User ID and Match ID.');
+            }
+        }
+
+        function sendMessage() {
+            const matchId = document.getElementById('matchId').value;
+            const senderId = document.getElementById('userId').value;
+            const message = document.getElementById('messageInput').value;
+
+            socket.emit('chatMessage', { matchId, senderId, message });
+            document.getElementById('messageInput').value = '';
+        }
+
+        socket.on('message', (data) => {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = `User ${data.senderId}: ${data.message} (${new Date(data.timestamp).toLocaleTimeString()})`;
+            document.getElementById('messages').appendChild(messageElement);
+        });
+    </script>
+</body>
+</html>
