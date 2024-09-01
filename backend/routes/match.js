@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const SelfAssessment = require('../models/SelfAssessment');
+const SelfAssessment = require('../models/selfAssessmentModel');
 const Match = require('../models/Match');
 
 // Route to find and create matches

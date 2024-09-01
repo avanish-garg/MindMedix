@@ -3,7 +3,7 @@ const Feedback = require('../models/feedbackModel');
 const submitFeedback = async (req, res) => {
     try {
         const newFeedback = new Feedback({
-            userName: req.body.userName,
+            username: req.body.username,
             feedback: req.body.feedback
         });
 

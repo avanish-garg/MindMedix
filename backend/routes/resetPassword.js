@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const UserAccount = require('../models/userAccount'); // Import the model as 'UserAccount'
+const UserAccount = require('../models/User'); // Import the model as 'UserAccount'
 
 
 router.post("/:token", async (req, res) => {

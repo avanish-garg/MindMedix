@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const SelfAssessment = require("../models/SelfAssessment");
+const SelfAssessment = require("../models/selfAssessmentModel");
 const Joi = require("joi");
 
 // Define the schema for validation

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const crypto = require("crypto");
-const UserAccount = require('../models/userAccount'); // Import the model as 'UserAccount'
+const UserAccount = require('../models/User'); // Import the model as 'UserAccount'
 const createTransporter = require('../config/emailTransporter');
 
 router.post("/", async (req, res) => {
