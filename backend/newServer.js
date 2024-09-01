@@ -25,7 +25,6 @@ const forgotPasswordRoutes = require('./routes/forgotPassword');
 const resetPasswordRoutes = require('./routes/resetPassword');
 const selfAssessmentRoute = require("./routes/selfAssessment");
 const emergencyContactRoute = require("./routes/emergencyContact");
-const matchRoutes = require('./routes/match');
 //const videoCallRoutes = require('./routes/videoCallRoutes');
 
 // Use Routes
@@ -41,7 +40,7 @@ app.use('/forgot-password', forgotPasswordRoutes);
 app.use('/reset-password', resetPasswordRoutes);
 app.use('/api/self-assessment', selfAssessmentRoute); // Self-Assessment route
 app.use('/api/emergency-contact', emergencyContactRoute); // Emergency Contact route
-app.use('/api/match', matchRoutes); // Matching routes
+app.use('/api/match', require('./routes/match')); // Matching routes
 //app.use('/api/video', videoCallRoutes); // Video call routes
 
 // MongoDB Connection

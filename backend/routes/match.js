@@ -21,6 +21,7 @@ router.post('/findMatches', async (req, res) => {
         }
 
         // Pair the users
+        const matches = [];
         for (let i = 0; i < assessments.length - 1; i++) {
             for (let j = i + 1; j < assessments.length; j++) {
                 const existingMatch = await Match.findOne({
@@ -38,11 +39,12 @@ router.post('/findMatches', async (req, res) => {
                     });
                     console.log('Saving new match:', newMatch);
                     await newMatch.save();
+                    matches.push(newMatch._id);
                 }
             }
         }
 
-        res.status(200).json({ message: 'Matches created successfully' });
+        res.status(200).json({ message: 'Matches created successfully', matchIds: matches });
     } catch (error) {
         console.error('Error finding matches:', error);
         res.status(500).json({ error: 'An error occurred while finding matches.' });
