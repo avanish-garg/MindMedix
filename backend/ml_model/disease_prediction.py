@@ -1,17 +1,23 @@
 # disease_prediction.py
-
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split, RandomizedSearchCV, cross_val_score
 from imblearn.over_sampling import SMOTE
-import joblib  # Add this import
+import joblib
 import json
 import sys
+import os
+
+# Paths (relative to the script's location)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(BASE_DIR, 'preprocessed_health_data.csv')
+MODEL_PATH = os.path.join(BASE_DIR, 'random_forest_model.pkl')
+SCALER_PATH = os.path.join(BASE_DIR, 'scaler.pkl')
 
 # Load the dataset
-data = pd.read_csv('C:/Users/avani/OneDrive/Documents/Desktop/Avanish/Projects/MindMedix/backend/ml_model/preprocessed_health_data.csv')
+data = pd.read_csv(DATA_PATH)
 
 # Display basic information
 print("Dataset Info:")
@@ -51,14 +57,6 @@ best_params = random_search.best_params_
 print("Best parameters found: {}".format(best_params))
 best_rf_model = random_search.best_estimator_
 
-# Feature Importance
-importances = best_rf_model.feature_importances_
-feature_names = X.columns
-feature_importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
-important_features = feature_importance_df.sort_values(by='Importance', ascending=False)
-print("Feature Importance:")
-print(important_features.head(20))
-
 # Handle Class Imbalance with SMOTE
 smote = SMOTE()
 X_resampled, y_resampled = smote.fit_resample(X_scaled, y)
@@ -77,24 +75,26 @@ print("Classification Report:")
 print(classification_report(y, y_pred))
 
 # Save the trained model and scaler
-joblib.dump(best_rf_model, 'random_forest_model.pkl')
-joblib.dump(scaler, 'scaler.pkl')
+joblib.dump(best_rf_model, MODEL_PATH)
+joblib.dump(scaler, SCALER_PATH)
 
 print("Model and scaler saved successfully.")
 
-# Debugging section
+# Prediction
 if __name__ == "__main__":
     print("Python script started")
     input_data = sys.argv[1]
     print("Received input:", input_data)
     input_data_dict = json.loads(input_data)
     print("Parsed input data:", input_data_dict)
-    
-    # Mockup for prediction
-    # You need to preprocess this input data similarly to how you preprocess training data
-    # For example, creating feature vectors for the model to predict
-    # Here is a dummy example assuming features are already extracted and scaled
-    dummy_feature_vector = [0] * X_scaled.shape[1]  # Replace this with actual feature vector transformation
-    prediction = best_rf_model.predict([dummy_feature_vector])
+
+    # Convert input data to DataFrame
+    input_df = pd.DataFrame([input_data_dict])
+
+    # Preprocess input data
+    input_scaled = scaler.transform(input_df)
+
+    # Make prediction
+    prediction = best_rf_model.predict(input_scaled)
     print("Prediction result:", {"disease": prediction[0]})
     print(json.dumps({"disease": prediction[0]}))
