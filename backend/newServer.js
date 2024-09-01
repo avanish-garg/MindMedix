@@ -1,6 +1,4 @@
-// Load environment variables
 require('dotenv').config();
-
 const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
