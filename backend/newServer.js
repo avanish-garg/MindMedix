@@ -1,27 +1,25 @@
-// backend/newServer.js
+// newServer.js
 
-require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
 const socketio = require('socket.io');
 const mongoose = require('mongoose');
 const path = require('path');
+const authRoutes = require('./routes/auth');
+const cors = require('cors');
 
-// newServer.js - Initialize Express
 const app = express();
 
-// Middleware to parse JSON
-// newServer.js - Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-// newServer.js - Routes
+app.use(cors());
+
 const routes = {
     progress: require('./routes/progress'),
     mood: require('./routes/mood'),
-    auth: require('./routes/auth'),
     predict: require('./routes/predict'),
     tips: require('./routes/tips'),
     userRoutes: require('./routes/userRoutes'),
@@ -33,11 +31,11 @@ const routes = {
     emergencyContact: require('./routes/emergencyContact'),
     match: require('./routes/match'),
     // videoCall: require('./routes/videoCallRoutes') // Uncomment if needed
+    auth: authRoutes,
 };
 
 // newServer.js - Use routes for different endpoints
 app.use('/api/mood', routes.mood);
-app.use('/api/auth', routes.auth);
 app.use('/api/predict', routes.predict);
 app.use('/api/tips', routes.tips);
 app.use('/api/users', routes.userRoutes);
@@ -50,7 +48,9 @@ app.use('/api/emergency-contact', routes.emergencyContact);
 app.use('/api/match', routes.match);
 //app.use('/api/video', routes.videoCall); // Uncomment if needed
 
-// newServer.js - MongoDB Connection
+app.use('/api/auth', routes.auth);
+
+// MongoDB connection setup
 const start = async () => {
     try {
         const mongoUri = process.env.MONGO_URI || "mongodb+srv://avanish:jaijinendra@pandavastrial.n7bpfrh.mongodb.net/?retryWrites=true&w=majority&appName=PANDAVASTRIAL";
@@ -120,10 +120,4 @@ const start = async () => {
     }
 };
 
-// newServer.js - Root Route
-app.get("/", (req, res) => {
-    res.send("Mental Health Self-Assessment API is Running");
-});
-
-// newServer.js - Start the server and connect to the database
 start();

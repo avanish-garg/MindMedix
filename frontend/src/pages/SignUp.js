@@ -1,7 +1,9 @@
-import { useCallback, useState, useEffect, useRef } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FrameComponent5 from "../components/FrameComponent5";
 import styles from "./SignUp.module.css";
+
+const apiBaseUrl = 'http://localhost:50009'; // Ensure this matches your backend URL
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -14,6 +16,7 @@ const SignUp = () => {
     password: "",
   });
 
+  // Define placeholders object
   const placeholders = {
     name: "Name",
     email: "Email",
@@ -23,32 +26,43 @@ const SignUp = () => {
     password: "Password",
   };
 
-  const handleChange = (e, field) => {
-    setFormData({
-      ...formData,
-      [field]: e.target.innerText.trim(),
-    });
-  };
-
-  const handleFocus = (e, field) => {
-    if (formData[field] === "") {
-      e.target.innerText = "";
-    }
-  };
-
-  const handleBlur = (e, field) => {
-    if (e.target.innerText.trim() === "") {
-      e.target.innerText = placeholders[field];
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
 
   const onArrowLeftCircleIconClick = useCallback(() => {
     navigate("/");
   }, [navigate]);
 
-  const onPrimaryClick = useCallback(() => {
+  const onPrimaryClick = useCallback(async () => {
     console.log("User Data:", formData);
-    navigate("/login-page");
+
+    try {
+      const response = await fetch(`${apiBaseUrl}/api/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Registration failed');
+      }
+
+      const result = await response.json();
+      console.log('Registration successful:', result);
+
+      // Navigate to login page after successful registration
+      navigate("/login-page");
+    } catch (error) {
+      console.error('Error during registration:', error.message);
+      // Handle the error (e.g., show an error message to the user)
+    }
   }, [navigate, formData]);
 
   return (
@@ -95,81 +109,70 @@ const SignUp = () => {
                 <div className={styles.createAccount}>Create Account</div>
 
                 <div className={styles.nameEmailInputs1}>
-                  <div
+                  <input
                     className={styles.name}
-                    contentEditable="true"
-                    onInput={(e) => handleChange(e, "name")}
-                    onFocus={(e) => handleFocus(e, "name")}
-                    onBlur={(e) => handleBlur(e, "name")}
-                  >
-                    {placeholders.name}
-                  </div>
+                    name="name"
+                    placeholder={placeholders.name}
+                    value={formData.name}
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <div className={styles.phoneNumberField}>
-                  <div
+                  <input
                     className={styles.email}
-                    contentEditable="true"
-                    onInput={(e) => handleChange(e, "email")}
-                    onFocus={(e) => handleFocus(e, "email")}
-                    onBlur={(e) => handleBlur(e, "email")}
-                  >
-                    {placeholders.email}
-                  </div>
+                    name="email"
+                    placeholder={placeholders.email}
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <div className={styles.detailFields}>
-                  <div
+                  <input
                     className={styles.gender}
-                    contentEditable="true"
-                    onInput={(e) => handleChange(e, "gender")}
-                    onFocus={(e) => handleFocus(e, "gender")}
-                    onBlur={(e) => handleBlur(e, "gender")}
-                  >
-                    {placeholders.gender}
-                  </div>
+                    name="gender"
+                    placeholder={placeholders.gender}
+                    value={formData.gender}
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <div className={styles.demographicLabels}>
-                  <div
+                  <input
                     className={styles.age}
-                    contentEditable="true"
-                    onInput={(e) => handleChange(e, "age")}
-                    onFocus={(e) => handleFocus(e, "age")}
-                    onBlur={(e) => handleBlur(e, "age")}
-                  >
-                    {placeholders.age}
-                  </div>
+                    name="age"
+                    placeholder={placeholders.age}
+                    value={formData.age}
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
 
               <div className={styles.nameEmailFields}>
-                <div
+                <input
                   className={styles.phoneNo}
-                  contentEditable="true"
-                  onInput={(e) => handleChange(e, "phoneNo")}
-                  onFocus={(e) => handleFocus(e, "phoneNo")}
-                  onBlur={(e) => handleBlur(e, "phoneNo")}
-                >
-                  {placeholders.phoneNo}
-                </div>
+                  name="phoneNo"
+                  placeholder={placeholders.phoneNo}
+                  value={formData.phoneNo}
+                  onChange={handleChange}
+                />
               </div>
 
               <div className={styles.demographicLabels1}>
-                <div
+                <input
                   className={styles.password}
-                  contentEditable="true"
-                  onInput={(e) => handleChange(e, "password")}
-                  onFocus={(e) => handleFocus(e, "password")}
-                  onBlur={(e) => handleBlur(e, "password")}
-                >
-                  {placeholders.password}
-                </div>
+                  name="password"
+                  type="password"
+                  placeholder={placeholders.password}
+                  value={formData.password}
+                  onChange={handleChange}
+                />
               </div>
               <FrameComponent5 />
-              <div className={styles.haveAnAccount}>have an account?</div>
+              <div className={styles.haveAnAccount}>Have an account?</div>
               <div className={styles.bookAppointment}>
-                <button className={styles.primary} onClick={onPrimaryClick}>
+                <button className={styles.primary} type="button" onClick={onPrimaryClick}>
                   <div className={styles.title}>Login</div>
                 </button>
               </div>
