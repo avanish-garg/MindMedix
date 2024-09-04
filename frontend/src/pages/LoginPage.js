@@ -1,14 +1,33 @@
-import { useCallback } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginFormFields from "../components/LoginFormFields";
 import styles from "./LoginPage.module.css";
+import axios from 'axios';
 
 const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const onArrowLeftCircleIconClick = useCallback(() => {
-    navigate("/");
-  }, [navigate]);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:50009/api/auth/login', {
+        email,
+        password
+      });
+
+      // Store token (in localStorage or context)
+      localStorage.setItem('token', response.data.token);
+
+      // Redirect to homepage or another page
+      navigate('/homepage-after-sign-up-or-login');
+    } catch (err) {
+      setError(err.response?.data?.error || 'Something went wrong');
+    }
+  };
 
   return (
     <div className={styles.loginPage}>
@@ -19,7 +38,7 @@ const LoginPage = () => {
             loading="lazy"
             alt=""
             src="/arrow-leftcircle.svg"
-            onClick={onArrowLeftCircleIconClick}
+            onClick={() => navigate("/")}
           />
           <div className={styles.welcomeBackWrapper}>
             <h1 className={styles.welcomeBack}>Welcome Back 😊</h1>
@@ -32,7 +51,11 @@ const LoginPage = () => {
             alt=""
             src="/calldoctorconceptdoctorsanswerpatientquestionsphone-2@2x.png"
           />
-          <LoginFormFields />
+          <form onSubmit={handleLogin}>
+            <LoginFormFields setEmail={setEmail} setPassword={setPassword} />
+            {error && <p className={styles.error}>{error}</p>}
+            <button type="submit" className={styles.loginButton}>Login</button>
+          </form>
         </div>
       </section>
       <div className={styles.loginPageInner}>

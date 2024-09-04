@@ -27,6 +27,7 @@ const diseasePredictionSchema = new mongoose.Schema({
 
 // Main User schema that includes personal information and embedded schemas
 const userSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true }, // Add username
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   gender: { type: String, required: true },
